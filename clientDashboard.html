@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Client Dashboard - STACKLY</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    
+    <style>
+        body { background: #F3F4F6; margin: 0; display: flex; height: 100vh; overflow: hidden; }
+        
+        .sidebar { width: 250px; background: white; border-right: 1px solid #E5E7EB; display: flex; flex-direction: column; padding: 20px 0; }
+        
+        .brand { padding: 0 20px 20px; font-size: 1.5rem; font-weight: 700; color: var(--clr-primary); border-bottom: 1px solid #E5E7EB; margin-bottom: 20px; }
+        
+        .nav-item { padding: 12px 20px; color: var(--clr-text-light); display: block; font-weight: 500; transition: var(--transition-fast); }
+        .nav-item:hover, .nav-item.active { background: var(--clr-primary-light); color: var(--clr-primary); border-right: 3px solid var(--clr-primary); }
+        
+        .main-content { flex: 1; padding: 30px; overflow-y: auto; }
+        
+        .topbar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; }
+        
+        .artist-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 20px; }
+        .artist-card { background: white; border-radius: var(--border-radius-sm); padding: 20px; box-shadow: var(--shadow-sm); }
+        .artist-card h4 { margin-bottom: 5px; }
+        .artist-card p { color: var(--clr-text-light); font-size: 0.9rem; margin-bottom: 15px; }
+    </style>
+</head>
+<body>
+
+    <div class="sidebar">
+        <div class="brand"><img src="assets/images/logo.webp" alt="STACKLY Client" style="height: 40px; margin-top: 10px;"></div>
+        <a href="#" class="nav-item active">Dashboard</a>
+        <a href="artists.html" class="nav-item">Discover Artists</a>
+        <a href="#" class="nav-item">My Bookings</a>
+        <a href="#" class="nav-item">Messages</a>
+        <a href="index.html" class="nav-item" style="margin-top: auto;">Logout</a>
+    </div>
+
+    <div class="main-content">
+        <div class="topbar">
+            <h2>Welcome back, User!</h2>
+        </div>
+        
+        <h3 style="margin-bottom: 15px;">Recommended Artists</h3>
+        <div class="artist-grid">
+            <div class="artist-card">
+                <h4>Alex Morgan</h4>
+                <p>Photography • Bengaluru</p>
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <span style="font-weight: 600; color: var(--clr-primary);">₹5,000</span>
+                    <button class="btn btn-primary" style="padding: 5px 15px;">Book</button>
+                </div>
+            </div>
+            <div class="artist-card">
+                <h4>David Chen</h4>
+                <p>Music • Mumbai</p>
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <span style="font-weight: 600; color: var(--clr-primary);">₹8,000</span>
+                    <button class="btn btn-primary" style="padding: 5px 15px;">Book</button>
+                </div>
+            </div>
+        </div>
+        
+        <h3 style="margin-top: 40px; margin-bottom: 15px;">Recent Bookings</h3>
+        <div style="background: white; padding: 20px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
+            <div style="display: flex; justify-content: space-between; border-bottom: 1px solid #eee; padding-bottom: 10px; margin-bottom: 10px;">
+                <div>
+                    <strong>Priya Singh (Art)</strong><br>
+                    <span style="color: #666; font-size: 0.9rem;">Custom Portrait</span>
+                </div>
+                <div style="color: #059669; font-weight: 600;">Completed</div>
+            </div>
+            <div style="display: flex; justify-content: space-between;">
+                <div>
+                    <strong>Sarah Johnson (Events)</strong><br>
+                    <span style="color: #666; font-size: 0.9rem;">Birthday Party Planning</span>
+                </div>
+                <div style="color: #D97706; font-weight: 600;">Pending</div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

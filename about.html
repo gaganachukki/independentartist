@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - STACKLY</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/animations.css">
+    
+    <style>
+        .page-header {
+            background: linear-gradient(135deg, var(--clr-primary) 0%, #4c1d95 100%);
+            color: white;
+            padding: 160px 0 100px;
+            text-align: center;
+        }
+        
+        .page-header h1 {
+            color: white;
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+        }
+        
+        /* Two Col Layouts */
+        .split-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+        
+        .split-img { border-radius: var(--border-radius); overflow: hidden; box-shadow: var(--shadow-lg); }
+        .split-img img { width: 100%; height: auto; }
+        
+        .split-content h2 { font-size: 2.5rem; margin-bottom: 20px; }
+        .split-content p { color: var(--clr-text-light); margin-bottom: 20px; font-size: 1.1rem; }
+        
+        .stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-top: 40px; }
+        .stat-item h3 { font-size: 2.5rem; color: var(--clr-primary); margin-bottom: 5px; }
+        .stat-item p { color: var(--clr-text-light); font-weight: 500; }
+        
+        @media (max-width: 900px) {
+            .split-section { grid-template-columns: 1fr; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-dark">
+        <div class="container nav-container">
+            <a href="index.html" class="nav-brand">
+                <img src="assets/images/logo.webp" alt="STACKLY Logo">
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html" class="active">About</a></li>
+                <li><a href="artists.html">Artists</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <div class="nav-actions">
+                <a href="login.html" class="btn btn-outline">Login</a>
+                <a href="signup.html" class="btn btn-primary">Register</a>
+            </div>
+            <div class="hamburger">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+    </nav>
+
+    <header class="page-header" style="background-image: url('assets/images/cover-about.webp');">
+        <div class="container fade-up">
+            <h1>Connecting Talent With Opportunity</h1>
+            <p style="color: rgba(255,255,255,0.8); max-width: 600px; margin: 0 auto; font-size: 1.2rem;">We built STACKLY to give independent artists the stage they deserve and clients the talent they need.</p>
+        </div>
+    </header>
+
+    <section class="section-padding">
+        <div class="container split-section fade-up">
+            <div class="split-content">
+                <h2 style="color: var(--clr-primary); font-size: 1rem; text-transform: uppercase; letter-spacing: 2px;">01 Our Story</h2>
+                <h3 style="font-size: 2.5rem; margin-bottom: 20px;">Built by Creatives for Creatives</h3>
+                <p>STACKLY started with a simple idea: talented independent artists shouldn't struggle to find work, and clients shouldn't struggle to find quality talent.</p>
+                <p>We've created a seamless marketplace that removes the middleman, ensuring artists get paid fairly and clients get exceptional service for their projects.</p>
+                
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <h3>5K+</h3>
+                        <p>Registered Artists</p>
+                    </div>
+                    <div class="stat-item">
+                        <h3>10K+</h3>
+                        <p>Projects Completed</p>
+                    </div>
+                </div>
+            </div>
+            <div class="split-img float-anim">
+                <img src="assets/images/creative-studio.webp" alt="Creative Studio" onerror="this.src='https://via.placeholder.com/600x400?text=Studio'">
+            </div>
+        </div>
+    </section>
+
+    <!-- Additional sections following the same pattern, abbreviated for space -->
+    
+    <section class="section-padding" style="background: white;">
+        <div class="container split-section fade-up">
+            <div class="split-img">
+                <img src="assets/images/hero-photographer.webp" alt="Photographer" onerror="this.src='https://via.placeholder.com/600x400?text=Photographer'">
+            </div>
+            <div class="split-content">
+                <h2 style="color: var(--clr-primary); font-size: 1rem; text-transform: uppercase; letter-spacing: 2px;">02 Our Mission</h2>
+                <h3 style="font-size: 2.5rem; margin-bottom: 20px;">Empowering Independent Talent</h3>
+                <p>We are on a mission to democratize the creative industry. Whether you need a wedding photographer, a live band for a corporate event, or a digital illustrator, STACKLY connects you with verified professionals instantly.</p>
+                <a href="artists.html" class="btn btn-primary mt-3">Explore Talent</a>
+            </div>
+        </div>
+    </section>
+
+        
+    <!-- Expansion: Core Values -->
+    <section class="section-padding" style="background: var(--clr-secondary);">
+        <div class="container">
+            <h2 class="section-title">Our Core Values</h2>
+            <div class="grid-3" style="margin-top: 50px;">
+                <div class="card text-center">
+                    <i class="fa-solid fa-heart" style="font-size: 2.5rem; color: var(--clr-accent); margin-bottom: 20px;"></i>
+                    <h4>Empowerment</h4>
+                    <p class="text-muted" style="margin-top: 10px;">Giving artists the tools and platform to build sustainable, independent careers.</p>
+                </div>
+                <div class="card text-center">
+                    <i class="fa-solid fa-eye" style="font-size: 2.5rem; color: var(--clr-accent); margin-bottom: 20px;"></i>
+                    <h4>Transparency</h4>
+                    <p class="text-muted" style="margin-top: 10px;">Clear pricing, honest reviews, and zero hidden fees for clients and creators.</p>
+                </div>
+                <div class="card text-center">
+                    <i class="fa-solid fa-earth-americas" style="font-size: 2.5rem; color: var(--clr-accent); margin-bottom: 20px;"></i>
+                    <h4>Diversity</h4>
+                    <p class="text-muted" style="margin-top: 10px;">Celebrating creative voices from all backgrounds, cultures, and disciplines globally.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Expansion: Meet the Team -->
+    <section class="section-padding">
+        <div class="container">
+            <h2 class="section-title">Meet The Team</h2>
+            <p class="section-subtitle">The passionate minds building the future of creative work.</p>
+            <div class="grid-4" style="margin-top: 40px;">
+                <div class="text-center">
+                    <div style="width: 150px; height: 150px; background: url('assets/images/ai1.webp') center/cover; border-radius: 50%; margin: 0 auto 20px;"></div>
+                    <h4>Elena Rodriguez</h4>
+                    <p class="text-primary">Founder & CEO</p>
+                </div>
+                <div class="text-center">
+                    <div style="width: 150px; height: 150px; background: url('assets/images/ai2.webp') center/cover; border-radius: 50%; margin: 0 auto 20px;"></div>
+                    <h4>James Chen</h4>
+                    <p class="text-primary">Head of Product</p>
+                </div>
+                <div class="text-center">
+                    <div style="width: 150px; height: 150px; background: url('assets/images/ai3.webp') center/cover; border-radius: 50%; margin: 0 auto 20px;"></div>
+                    <h4>Sarah Williams</h4>
+                    <p class="text-primary">Community Lead</p>
+                </div>
+                <div class="text-center">
+                    <div style="width: 150px; height: 150px; background: url('assets/images/ai4.webp') center/cover; border-radius: 50%; margin: 0 auto 20px;"></div>
+                    <h4>Michael Obi</h4>
+                    <p class="text-primary">Lead Engineer</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Expansion: Timeline -->
+    <section class="section-padding" style="background: var(--clr-text-dark); color: white;">
+        <div class="container text-center">
+            <h2 class="section-title" style="color: white;">Our Journey</h2>
+            <div style="display: flex; flex-direction: column; gap: 40px; max-width: 600px; margin: 50px auto 0; text-align: left;">
+                <div style="border-left: 3px solid var(--clr-primary); padding-left: 20px;">
+                    <h3 style="color: var(--clr-accent);">2022</h3>
+                    <h4>The Idea is Born</h4>
+                    <p style="color: #9ca3af;">STACKLY started in a small coffee shop with a mission to help 10 local artists find gigs.</p>
+                </div>
+                <div style="border-left: 3px solid var(--clr-primary); padding-left: 20px;">
+                    <h3 style="color: var(--clr-accent);">2024</h3>
+                    <h4>Series A Funding</h4>
+                    <p style="color: #9ca3af;">Secured $15M to expand the platform and introduce secure escrow payments.</p>
+                </div>
+                <div style="border-left: 3px solid var(--clr-primary); padding-left: 20px;">
+                    <h3 style="color: var(--clr-accent);">2026</h3>
+                    <h4>Global Expansion</h4>
+                    <p style="color: #9ca3af;">Now serving clients and supporting independent artists in over 40 countries worldwide.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Expansion: Global Impact -->
+    <section class="section-padding">
+        <div class="container text-center">
+            <h2 class="section-title">Global Impact</h2>
+            <div class="grid-3" style="margin-top: 40px;">
+                <div>
+                    <h1 class="counter-stat" data-target="50" data-suffix="K+" style="font-size: 4rem; color: var(--clr-primary);">0K+</h1>
+                    <h4>Active Artists</h4>
+                </div>
+                <div>
+                    <h1 class="counter-stat" data-target="120" data-suffix="K" style="font-size: 4rem; color: var(--clr-primary);">0K</h1>
+                    <h4>Projects Completed</h4>
+                </div>
+                <div>
+                    <h1 class="counter-stat" data-target="45" data-prefix="$" data-suffix="M+" style="font-size: 4rem; color: var(--clr-primary);">$0M+</h1>
+                    <h4>Paid to Creators</h4>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Expansion: Press -->
+    <section class="section-padding" style="background: #f3f4f6; text-align: center;">
+        <div class="container">
+            <h3 style="margin-bottom: 30px; color: var(--clr-text-light);">AS FEATURED IN</h3>
+            <div class="grid-4" style="opacity: 0.6; font-size: 1.5rem; font-weight: bold; align-items: center;">
+                <div>TechCrunch</div>
+                <div>Forbes</div>
+                <div>Wired</div>
+                <div>FastCompany</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    
+    <!-- New Section 1: Press & Media -->
+    <section class="section-padding" style="background: var(--clr-bg-main);">
+        <div class="container text-center">
+            <h2 class="section-title">As Featured In</h2>
+            <p class="section-subtitle">The industry is taking notice of our creative revolution.</p>
+            <div style="display: flex; justify-content: center; gap: 40px; flex-wrap: wrap; margin-top: 40px; opacity: 0.6; filter: grayscale(100%);">
+                <h2 style="font-family: serif; letter-spacing: 2px; color: var(--clr-text-dark);">TechCrunch</h2>
+                <h2 style="font-family: sans-serif; font-weight: 900; letter-spacing: -1px; color: var(--clr-text-dark);">WIRED</h2>
+                <h2 style="font-family: serif; font-style: italic; color: var(--clr-text-dark);">Forbes</h2>
+                <h2 style="font-family: sans-serif; font-weight: 300; letter-spacing: 4px; color: var(--clr-text-dark);">FASTCOMPANY</h2>
+            </div>
+        </div>
+    </section>
+
+    <!-- New Section 2: Sustainability -->
+    <section class="section-padding">
+        <div class="container grid-2" style="align-items: center;">
+            <div class="animate-on-scroll">
+                <div style="width: 80px; height: 80px; background: var(--clr-primary-light); color: var(--clr-primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2.5rem; margin-bottom: 20px;">
+                    <i class="fas fa-leaf"></i>
+                </div>
+                <h2 class="section-title">Our Commitment to Sustainability</h2>
+                <p class="text-muted" style="margin-bottom: 20px;">We believe that building the future of work shouldn't come at the expense of our planet. That's why STACKLY is proud to run entirely on 100% carbon-neutral cloud infrastructure.</p>
+                <p class="text-muted">Additionally, we pledge 1% of all platform revenue to local arts education programs and environmental conservation charities, ensuring our growth directly benefits the communities we serve.</p>
+            </div>
+            <div class="card text-center animate-on-scroll" style="transition-delay: 0.2s; background: var(--clr-primary); color: white; padding: 60px 40px;">
+                <h1 style="color: white; font-size: 4rem; margin-bottom: 10px;">1%</h1>
+                <h4 style="color: white; margin-bottom: 20px;">For The Arts</h4>
+                <p style="opacity: 0.9; margin-bottom: 30px;">Every project booked on our platform helps fund the next generation of creative minds.</p>
+                <button class="btn btn-secondary">Read Our Impact Report</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- New Section 3: Careers -->
+    <section class="section-padding" style="background: var(--clr-text-dark); color: white; text-align: center;">
+        <div class="container">
+            <h2 class="section-title" style="color: white;">Join Our Mission</h2>
+            <p style="color: #9ca3af; max-width: 600px; margin: 0 auto 30px; font-size: 1.1rem;">We are always looking for brilliant engineers, designers, and community managers to help us empower independent creators worldwide.</p>
+            <div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
+                <div class="card" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); width: 250px;">
+                    <i class="fas fa-laptop-code text-primary" style="font-size: 2rem; margin-bottom: 15px;"></i>
+                    <h5 style="color: white;">Engineering</h5>
+                    <p style="color: #9ca3af; font-size: 0.9rem;">3 Open Roles</p>
+                </div>
+                <div class="card" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); width: 250px;">
+                    <i class="fas fa-paint-brush text-primary" style="font-size: 2rem; margin-bottom: 15px;"></i>
+                    <h5 style="color: white;">Design</h5>
+                    <p style="color: #9ca3af; font-size: 0.9rem;">1 Open Role</p>
+                </div>
+                <div class="card" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); width: 250px;">
+                    <i class="fas fa-bullhorn text-primary" style="font-size: 2rem; margin-bottom: 15px;"></i>
+                    <h5 style="color: white;">Marketing</h5>
+                    <p style="color: #9ca3af; font-size: 0.9rem;">2 Open Roles</p>
+                </div>
+            </div>
+            <button class="btn btn-primary" style="margin-top: 40px;">View All Open Positions</button>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="brand-logo">
+                        <img src="assets/images/logo.webp" alt="STACKLY Logo">
+                    </div>
+                    <p>A premium partner for creative success worldwide. Experience hiring independent artists in unparalleled comfort and quality.</p>
+                                        <div class="social-links">
+                        <a href="404.html"><i class="fa-brands fa-facebook"></i></a>
+                        <a href="404.html"><i class="fa-brands fa-x-twitter"></i></a>
+                        <a href="404.html"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="404.html"><i class="fa-brands fa-linkedin"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="artists.html">Hire Artists</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="contact.html">Contact Us</a></li>
+                        <li><a href="404.html">Privacy Policy</a></li>
+                        <li><a href="404.html">Terms & Conditions</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Contact</h4>
+                    <div class="footer-contact-item">
+                        <i class="fa-solid fa-envelope"></i>
+                        <a href="mailto:support@stackly.in">support@stackly.in</a>
+                    </div>
+                    <div class="footer-contact-item">
+                        <i class="fa-solid fa-phone"></i>
+                        <p>+91 98765 43210</p>
+                    </div>
+                    <div class="footer-contact-item">
+                        <i class="fa-solid fa-location-dot"></i>
+                        <p>123 Creative Studio,<br>New York 10012</p>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Newsletter</h4>
+                    <div class="footer-newsletter">
+                        <p>Subscribe to receive the latest updates, exclusive creative offers, and platform news.</p>
+                        <input type="email" placeholder="Your email address">
+                        <button class="btn fw-600">Subscribe</button>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                &copy; 2026 STACKLY. All rights reserved.
+                <div class="back-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})"><i class="fa-solid fa-arrow-up"></i></div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/animations.js"></script>
+</body>
+</html>

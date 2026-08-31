@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STACKLY | Independent Artist Marketplace</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/animations.css">
+    
+    <style>
+        /* Specific Home Page Styles */
+        .hero {
+            padding: 130px 0 40px;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+            background: linear-gradient(rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.6)), url('assets/images/hero-video.webp') center/cover no-repeat;
+        }
+        
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 40px;
+            align-items: center;
+        }
+        
+        .hero-content h1 {
+            font-size: 3.5rem;
+            line-height: 1.1;
+            margin-bottom: 24px;
+        }
+        
+        .hero-content h1 span {
+            color: var(--clr-primary);
+        }
+        
+        .hero-content p {
+            font-size: 1.1rem;
+            color: var(--clr-text-light);
+            margin-bottom: 30px;
+            max-width: 500px;
+        }
+        
+        .hero-cta {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 30px;
+        }
+        
+        .trust-text {
+            font-size: 0.9rem;
+            color: var(--clr-text-light);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        /* Hero Visual Collage */
+        .hero-visual {
+            position: relative;
+            height: 480px;
+        }
+        
+        .collage-img {
+            position: absolute;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-lg);
+            object-fit: cover;
+        }
+        
+        .img-1 { width: 230px; height: 320px; top: 0; left: 0; z-index: 2; transform: rotate(-3deg); }
+        .img-2 { width: 280px; height: 200px; top: 20px; right: 0; z-index: 1; transform: rotate(5deg); }
+        .img-3 { width: 260px; height: 240px; bottom: 0; right: 20px; z-index: 3; transform: rotate(-2deg); }
+        
+        .floating-card {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            padding: 16px 24px;
+            border-radius: var(--border-radius-sm);
+            box-shadow: var(--shadow-lg);
+            z-index: 4;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .fc-1 { bottom: 80px; left: -20px; }
+        .fc-2 { top: 20px; right: -20px; }
+        
+        .fc-icon {
+            width: 40px; height: 40px;
+            background: var(--clr-primary-light);
+            color: var(--clr-primary);
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-weight: bold;
+        }
+        
+        .fc-text h4 { margin: 0; font-size: 1.1rem; }
+        .fc-text p { margin: 0; font-size: 0.8rem; color: var(--clr-text-light); }
+
+        /* Category Cards (Section 1) */
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 24px;
+        }
+        
+        .cat-card {
+            text-align: center;
+            padding: 40px 20px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .cat-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+        
+        /* Interactive Discovery (Section 2) */
+        .search-bar-wrapper {
+            background: white;
+            padding: 10px;
+            border-radius: 50px;
+            box-shadow: var(--shadow-md);
+            display: flex;
+            margin-bottom: 40px;
+            border: 1px solid #E5E7EB;
+        }
+        
+        .search-bar-wrapper input {
+            flex: 1;
+            border: none;
+            padding: 0 20px;
+            outline: none;
+            font-size: 1rem;
+            font-family: inherit;
+            background: transparent;
+        }
+        
+        .filters {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-bottom: 40px;
+            justify-content: center;
+        }
+        
+        .filter-tag {
+            padding: 8px 16px;
+            background: white;
+            border: 1px solid #E5E7EB;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: var(--transition-fast);
+        }
+        
+        .filter-tag:hover, .filter-tag.active {
+            background: var(--clr-primary);
+            color: white;
+            border-color: var(--clr-primary);
+        }
+
+        /* Horizontal Scroll (Section 3) */
+        .featured-scroll {
+            display: flex;
+            gap: 24px;
+            overflow-x: auto;
+            padding: 20px 0 40px;
+            scrollbar-width: none;
+        }
+        .featured-scroll::-webkit-scrollbar { display: none; }
+        
+        .artist-card {
+            min-width: 300px;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            background: white;
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .artist-card-img {
+            height: 200px;
+            background-color: #eee;
+            position: relative;
+        }
+        .artist-card-img img { width: 100%; height: 100%; object-fit: cover; }
+        
+        .artist-card-content { padding: 20px; }
+        .artist-price { font-weight: 700; color: var(--clr-primary); margin-top: 10px; display: block; }
+        
+        /* How it works */
+        .step-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .step-number {
+            width: 60px; height: 60px;
+            background: var(--clr-primary-light);
+            color: var(--clr-primary);
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.5rem; font-weight: 700;
+            margin: 0 auto 20px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .step-line {
+            position: absolute;
+            top: 30px; left: 12.5%; right: 12.5%;
+            height: 2px;
+            background: #E5E7EB;
+            z-index: 1;
+        }
+
+        /* Final CTA */
+        .cta-section {
+            background: var(--clr-primary);
+            color: white;
+            text-align: center;
+            padding: 100px 20px;
+            border-radius: var(--border-radius);
+            margin: 60px 5%;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .cta-section h2 { color: white; }
+        .cta-section .btn-secondary { color: var(--clr-primary); }
+
+        @media (max-width: 1024px) {
+            .hero-grid { grid-template-columns: 1fr; text-align: center; }
+            .hero-content p { margin: 0 auto 40px; }
+            .hero-cta { justify-content: center; }
+            .trust-text { justify-content: center; }
+            .hero-visual { height: 500px; margin-top: 40px; }
+            .step-grid { grid-template-columns: 1fr 1fr; gap: 40px; }
+            .step-line { display: none; }
+        }
+        @media (max-width: 768px) {
+            .hero-content h1 { font-size: 2.8rem; }
+            .hero-visual { height: 400px; }
+            .img-1 { width: 180px; height: 260px; }
+            .img-2 { width: 220px; height: 160px; }
+            .img-3 { width: 200px; height: 200px; }
+            .fc-1 { bottom: 20px; left: 0; }
+            .fc-2 { top: 0; right: 0; }
+            .step-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="nav-brand">
+                <img src="assets/images/logo.webp" alt="STACKLY Logo">
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="artists.html">Artists</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <div class="nav-actions">
+                <a href="login.html" class="btn btn-outline">Login</a>
+                <a href="signup.html" class="btn btn-primary btn-magnetic">Register</a>
+            </div>
+            <div class="hamburger">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero">
+        <div class="container hero-grid">
+            <div class="hero-content fade-up">
+                <h1>Hire Independent <span>Artists</span> for Your Next Big Moment</h1>
+                <p>Discover talented photographers, musicians, artists, event professionals, and creative specialists. Connect directly with the right talent for your project, event, or special occasion.</p>
+                <div class="hero-cta">
+                    <a href="artists.html" class="btn btn-primary btn-magnetic">Hire an Artist</a>
+                    <a href="artists.html" class="btn btn-secondary">Explore Artists</a>
+                </div>
+                <div class="trust-text">
+                    <strong>500+</strong> Independent Artists Ready to work with you
+                </div>
+            </div>
+            <div class="hero-visual fade-up delay-200">
+                <img src="assets/images/unique_10.webp" alt="Photographer" class="collage-img img-1 float-anim" onerror="this.src='https://via.placeholder.com/280x380?text=Photo'">
+                <img src="assets/images/hero-event.webp" alt="Event" class="collage-img img-2 float-anim delay-100" onerror="this.src='https://via.placeholder.com/320x220?text=Event'">
+                <img src="assets/images/unique_11.webp" alt="Artist" class="collage-img img-3 float-anim delay-200" onerror="this.src='https://via.placeholder.com/300x280?text=Art'">
+                
+                <div class="floating-card fc-1 pulse-anim">
+                    <div class="fc-icon"><i class="fa-solid fa-check"></i></div>
+                    <div class="fc-text">
+                        <h4>500+</h4>
+                        <p>Happy Clients</p>
+                    </div>
+                </div>
+                <div class="floating-card fc-2 pulse-anim delay-300">
+                    <div class="fc-icon"><i class="fa-solid fa-star"></i></div>
+                    <div class="fc-text">
+                        <h4>98%</h4>
+                        <p>Client Satisfaction</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- SECTION 01: Explore Creative Talent -->
+    <section class="section-padding" style="background: white;">
+        <div class="container">
+            <div class="section-header fade-up">
+                <h2>Find the Right Talent for Every Occasion</h2>
+                <p>From capturing unforgettable moments to creating original artwork and managing complete events, discover independent professionals who bring your ideas to life.</p>
+            </div>
+            
+            <div class="category-grid stagger-container">
+                <div class="card cat-card">
+                    <div class="cat-icon"><i class="fa-solid fa-camera"></i></div>
+                    <h3>Photographers</h3>
+                    <p class="text-muted mt-2">Capture your special moments</p>
+                    <a href="artists.html" class="text-primary fw-600 mt-3 d-inline-block" style="margin-top: 15px;">Explore &rarr;</a>
+                </div>
+                <div class="card cat-card">
+                    <div class="cat-icon"><i class="fa-solid fa-guitar"></i></div>
+                    <h3>Guitarists & Musicians</h3>
+                    <p class="text-muted mt-2">Live music for events</p>
+                    <a href="artists.html" class="text-primary fw-600 mt-3 d-inline-block" style="margin-top: 15px;">Explore &rarr;</a>
+                </div>
+                <div class="card cat-card">
+                    <div class="cat-icon"><i class="fa-solid fa-palette"></i></div>
+                    <h3>Art Artists</h3>
+                    <p class="text-muted mt-2">Custom artwork & portraits</p>
+                    <a href="artists.html" class="text-primary fw-600 mt-3 d-inline-block" style="margin-top: 15px;">Explore &rarr;</a>
+                </div>
+                <div class="card cat-card">
+                    <div class="cat-icon"><i class="fa-solid fa-calendar-alt"></i></div>
+                    <h3>Event Managers</h3>
+                    <p class="text-muted mt-2">Plan perfect events</p>
+                    <a href="artists.html" class="text-primary fw-600 mt-3 d-inline-block" style="margin-top: 15px;">Explore &rarr;</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 02: Artist Discovery -->
+    <section class="section-padding">
+        <div class="container">
+            <div class="section-header fade-up">
+                <h2>Discover Artists Who Match Your Vision</h2>
+            </div>
+            
+            <div class="search-bar-wrapper fade-up">
+                <input type="text" placeholder="What are you looking for? (e.g., Wedding Photographer in Bengaluru)">
+                <button class="btn btn-primary">Search Artists</button>
+            </div>
+            
+            <div class="filters fade-up delay-100">
+                <div class="filter-tag active">All Categories</div>
+                <div class="filter-tag">Photography</div>
+                <div class="filter-tag">Music</div>
+                <div class="filter-tag">Art</div>
+                <div class="filter-tag">Events</div>
+                <div class="filter-tag">Top Rated</div>
+            </div>
+            
+            <!-- Demo Artist Grid populated by JS -->
+            <div class="category-grid stagger-container" id="demo-artist-grid">
+                <!-- Artist cards will be injected here via main.js or artists.js -->
+                <div class="card p-0 artist-card">
+                    <div class="artist-card-img">
+                        <img src="assets/images/unique_12.webp" alt="Alex Morgan" onerror="this.src='https://via.placeholder.com/300x200?text=Alex'">
+                    </div>
+                    <div class="artist-card-content">
+                        <h3>Alex Morgan <span style="color:var(--clr-accent);font-size:0.9rem;"><i class="fa-solid fa-circle-check"></i></span></h3>
+                        <p class="text-muted">Photographer • Bengaluru</p>
+                        <div style="color: #F59E0B; margin: 5px 0;"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i> 4.9</div>
+                        <span class="artist-price">Starting at ₹5,000</span>
+                        <a href="404.html" class="btn btn-outline" style="width: 100%; margin-top: 15px;">View Profile</a>
+                    </div>
+                </div>
+                <div class="card p-0 artist-card">
+                    <div class="artist-card-img">
+                        <img src="assets/images/unique_13.webp" alt="David Chen" onerror="this.src='https://via.placeholder.com/300x200?text=David'">
+                    </div>
+                    <div class="artist-card-content">
+                        <h3>David Chen <span style="color:var(--clr-accent);font-size:0.9rem;"><i class="fa-solid fa-circle-check"></i></span></h3>
+                        <p class="text-muted">Guitarist • Mumbai</p>
+                        <div style="color: #F59E0B; margin: 5px 0;"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i> 5.0</div>
+                        <span class="artist-price">Starting at ₹8,000</span>
+                        <a href="404.html" class="btn btn-outline" style="width: 100%; margin-top: 15px;">View Profile</a>
+                    </div>
+                </div>
+                <div class="card p-0 artist-card">
+                    <div class="artist-card-img">
+                        <img src="assets/images/unique_14.webp" alt="Priya Singh" onerror="this.src='https://via.placeholder.com/300x200?text=Priya'">
+                    </div>
+                    <div class="artist-card-content">
+                        <h3>Priya Singh</h3>
+                        <p class="text-muted">Digital Artist • Delhi</p>
+                        <div style="color: #F59E0B; margin: 5px 0;"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-regular fa-star"></i> 4.7</div>
+                        <span class="artist-price">Starting at ₹3,000</span>
+                        <a href="404.html" class="btn btn-outline" style="width: 100%; margin-top: 15px;">View Profile</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 40px;">
+                <a href="artists.html" class="btn btn-secondary">View All Artists</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 04: How It Works -->
+    <section class="section-padding" style="background: white;">
+        <div class="container">
+            <div class="section-header fade-up">
+                <h2>Hiring Creative Talent Made Simple</h2>
+            </div>
+            
+            <div class="step-grid fade-up delay-100">
+                <div class="step-line"></div>
+                
+                <div class="step-item">
+                    <div class="step-number">01</div>
+                    <h3>Discover</h3>
+                    <p class="text-muted">Find artists based on your requirements.</p>
+                </div>
+                
+                <div class="step-item">
+                    <div class="step-number">02</div>
+                    <h3>Connect</h3>
+                    <p class="text-muted">Review profiles and discuss your project.</p>
+                </div>
+                
+                <div class="step-item">
+                    <div class="step-number">03</div>
+                    <h3>Hire</h3>
+                    <p class="text-muted">Choose the right artist and confirm.</p>
+                </div>
+                
+                <div class="step-item">
+                    <div class="step-number">04</div>
+                    <h3>Create</h3>
+                    <p class="text-muted">Collaborate and bring your idea to life.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- SECTION 09: Final CTA -->
+    <section class="cta-section fade-up">
+        <h2>Your Next Great Project Starts With the Right Artist.</h2>
+        <p style="margin: 20px auto 40px; max-width: 600px; font-size: 1.1rem; color: rgba(255,255,255,0.9);">Find talented independent artists, connect directly, and turn your ideas into memorable experiences.</p>
+        <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
+            <a href="artists.html" class="btn btn-secondary btn-magnetic">Find an Artist</a>
+            <a href="signup.html" class="btn btn-outline" style="border-color: white; color: white;">Join as an Artist</a>
+        </div>
+    </section>
+
+        
+    <!-- Expansion: Trusted By -->
+    <section class="section-padding" style="background: var(--clr-secondary); padding-top: 50px; padding-bottom: 50px; border-bottom: 1px solid #eee;">
+        <div class="container">
+            <p class="text-center text-muted fw-500 mb-4" style="margin-bottom: 20px;">TRUSTED BY INNOVATIVE BRANDS WORLDWIDE</p>
+            <div class="grid-4" style="text-align: center; opacity: 0.5; align-items: center;">
+                <h3 style="margin:0;">VOGUE</h3>
+                <h3 style="margin:0;">Spotify</h3>
+                <h3 style="margin:0;">Adobe</h3>
+                <h3 style="margin:0;">Netflix</h3>
+            </div>
+        </div>
+    </section>
+
+    <!-- Expansion: Trending Skills -->
+    <section class="section-padding">
+        <div class="container">
+            <h2 class="section-title">Trending Creative Skills</h2>
+            <p class="section-subtitle">Discover what talents our clients are booking the most this month.</p>
+            <div style="display: flex; flex-wrap: wrap; gap: 15px; justify-content: center; max-width: 800px; margin: 0 auto;">
+                <span class="btn btn-outline" style="border-radius: 50px;">Cinematic Videography</span>
+                <span class="btn btn-outline" style="border-radius: 50px;">Acoustic Covers</span>
+                <span class="btn btn-outline" style="border-radius: 50px;">Minimalist Logo Design</span>
+                <span class="btn btn-outline" style="border-radius: 50px;">Corporate Event Photography</span>
+                <span class="btn btn-outline" style="border-radius: 50px;">3D Animation</span>
+                <span class="btn btn-outline" style="border-radius: 50px;">Voiceover Acting</span>
+                <span class="btn btn-outline" style="border-radius: 50px;">Mural Art</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Expansion: Success Stories -->
+    <section class="section-padding" style="background: var(--clr-text-dark); color: var(--clr-secondary);">
+        <div class="container">
+            <h2 class="section-title" style="color: var(--clr-secondary);">Success Stories</h2>
+            <p class="section-subtitle" style="color: #9ca3af;">Hear from businesses who found their perfect creative match.</p>
+            <div class="grid-2">
+                <div class="card" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: var(--clr-secondary);">
+                    <div style="color: var(--clr-accent); margin-bottom: 15px;"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                    <p style="font-size: 1.1rem; font-style: italic; margin-bottom: 20px;">"We needed a highly skilled digital artist for our game launch within 48 hours. STACKLY connected us with Priya, who delivered mind-blowing assets ahead of schedule."</p>
+                    <div style="display: flex; align-items: center; gap: 15px;">
+                        <div style="width: 50px; height: 50px; background: #333; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold;">MK</div>
+                        <div><h4 style="color: var(--clr-secondary); margin: 0;">Marcus K.</h4><span style="color: #9ca3af; font-size: 0.9rem;">Art Director, Nexus Studios</span></div>
+                    </div>
+                </div>
+                <div class="card" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: var(--clr-secondary);">
+                    <div style="color: var(--clr-accent); margin-bottom: 15px;"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+                    <p style="font-size: 1.1rem; font-style: italic; margin-bottom: 20px;">"The quality of musicians on this platform is unmatched. Booking a live acoustic duo for our corporate gala was seamless and stress-free."</p>
+                    <div style="display: flex; align-items: center; gap: 15px;">
+                        <div style="width: 50px; height: 50px; background: #333; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold;">SL</div>
+                        <div><h4 style="color: var(--clr-secondary); margin: 0;">Sarah L.</h4><span style="color: #9ca3af; font-size: 0.9rem;">Event Manager</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Expansion: Trust & Safety -->
+    <section class="section-padding">
+        <div class="container text-center">
+            <h2 class="section-title">Built on Trust & Safety</h2>
+            <p class="section-subtitle">We ensure every interaction is secure, professional, and guaranteed.</p>
+            <div class="grid-3" style="margin-top: 50px;">
+                <div class="card text-center">
+                    <i class="fa-solid fa-shield-halved" style="font-size: 3rem; color: var(--clr-primary); margin-bottom: 20px;"></i>
+                    <h4>Secure Payments</h4>
+                    <p class="text-muted mt-2" style="margin-top:10px;">Funds are held securely in escrow until you approve the final delivery of the creative work.</p>
+                </div>
+                <div class="card text-center">
+                    <i class="fa-solid fa-user-check" style="font-size: 3rem; color: var(--clr-primary); margin-bottom: 20px;"></i>
+                    <h4>Verified Talent</h4>
+                    <p class="text-muted mt-2" style="margin-top:10px;">Every artist undergoes a rigorous portfolio review and identity check before joining.</p>
+                </div>
+                <div class="card text-center">
+                    <i class="fa-solid fa-headset" style="font-size: 3rem; color: var(--clr-primary); margin-bottom: 20px;"></i>
+                    <h4>24/7 Support</h4>
+                    <p class="text-muted mt-2" style="margin-top:10px;">Our dedicated dispute and support team is available around the clock to assist you.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Expansion: Artist Spotlight -->
+    <section class="section-padding" style="background: var(--clr-secondary);">
+        <div class="container">
+            <div class="grid-2" style="align-items: center;">
+                <div style="position: relative;">
+                    <img src="assets/images/unique_15.webp" style="border-radius: 16px; box-shadow: 0 20px 40px rgba(0,0,0,0.1);" alt="Spotlight Artist">
+                    <div style="position: absolute; bottom: -20px; right: -20px; background: var(--clr-primary); color: white; padding: 20px; border-radius: 50%; width: 100px; height: 100px; display: flex; align-items: center; justify-content: center; text-align: center; font-weight: bold; line-height: 1.2;">Artist of<br>the Month</div>
+                </div>
+                <div>
+                    <h4 class="text-primary mb-2">SPOTLIGHT</h4>
+                    <h2 style="font-size: 2.5rem; margin-bottom: 20px;">Meet The Innovators</h2>
+                    <p class="text-muted" style="margin-bottom: 20px; font-size: 1.1rem;">Every month, we highlight independent creators who are pushing the boundaries of their craft. From award-winning cinematographers to self-taught digital illustrators, explore the stories of our top-rated talent.</p>
+                    <ul style="margin-bottom: 30px; display: flex; flex-direction: column; gap: 15px;">
+                        <li><i class="fa-solid fa-check text-primary" style="margin-right: 10px;"></i> Read exclusive behind-the-scenes interviews</li>
+                        <li><i class="fa-solid fa-check text-primary" style="margin-right: 10px;"></i> Discover their creative process</li>
+                        <li><i class="fa-solid fa-check text-primary" style="margin-right: 10px;"></i> Book them directly for your next project</li>
+                    </ul>
+                    <a href="blog.html" class="btn btn-primary">Read the Full Interview</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    
+    <!-- New Section 1: Testimonials -->
+    <section class="section-padding" style="background: var(--clr-bg-main);">
+        <div class="container">
+            <h2 class="section-title text-center">What Our Clients Say</h2>
+            <div class="grid-3" style="margin-top: 40px;">
+                <div class="card animate-on-scroll">
+                    <div style="color: #FBBF24; margin-bottom: 15px;">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p style="font-style: italic; margin-bottom: 20px;">"We hired an incredible event photographer through STACKLY at the last minute. The quality of work was phenomenal, and the payment process was seamless."</p>
+                    <h5 class="fw-700">- Marcus T., Event Director</h5>
+                </div>
+                <div class="card animate-on-scroll" style="transition-delay: 0.1s;">
+                    <div style="color: #FBBF24; margin-bottom: 15px;">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p style="font-style: italic; margin-bottom: 20px;">"Finding an acoustic guitarist for our corporate retreat took less than 10 minutes. Highly recommend this marketplace for any creative needs."</p>
+                    <h5 class="fw-700">- Sarah Jenkins, HR Manager</h5>
+                </div>
+                <div class="card animate-on-scroll" style="transition-delay: 0.2s;">
+                    <div style="color: #FBBF24; margin-bottom: 15px;">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                    <p style="font-style: italic; margin-bottom: 20px;">"The talent pool here is unmatched. We found our lead digital artist on STACKLY and they completely transformed our brand identity."</p>
+                    <h5 class="fw-700">- David L., Startup Founder</h5>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- New Section 2: Trust & Safety -->
+    <section class="section-padding" style="background: var(--clr-text-dark); color: white;">
+        <div class="container text-center">
+            <h2 class="section-title" style="color: white;">The STACKLY Guarantee</h2>
+            <p class="section-subtitle" style="color: #9ca3af;">Your peace of mind is our top priority.</p>
+            <div class="grid-4" style="margin-top: 40px;">
+                <div class="animate-on-scroll">
+                    <i class="fas fa-shield-alt text-primary" style="font-size: 2.5rem; margin-bottom: 20px;"></i>
+                    <h4 style="color: white;">Secure Escrow</h4>
+                    <p style="color: #9ca3af; font-size: 0.9rem;">Funds are held securely until the project is delivered and approved.</p>
+                </div>
+                <div class="animate-on-scroll" style="transition-delay: 0.1s;">
+                    <i class="fas fa-check-circle text-primary" style="font-size: 2.5rem; margin-bottom: 20px;"></i>
+                    <h4 style="color: white;">Vetted Talent</h4>
+                    <p style="color: #9ca3af; font-size: 0.9rem;">Every artist passes a rigorous portfolio and identity verification process.</p>
+                </div>
+                <div class="animate-on-scroll" style="transition-delay: 0.2s;">
+                    <i class="fas fa-headset text-primary" style="font-size: 2.5rem; margin-bottom: 20px;"></i>
+                    <h4 style="color: white;">24/7 Support</h4>
+                    <p style="color: #9ca3af; font-size: 0.9rem;">Our global support team is always available to assist with disputes or questions.</p>
+                </div>
+                <div class="animate-on-scroll" style="transition-delay: 0.3s;">
+                    <i class="fas fa-undo text-primary" style="font-size: 2.5rem; margin-bottom: 20px;"></i>
+                    <h4 style="color: white;">Money-Back</h4>
+                    <p style="color: #9ca3af; font-size: 0.9rem;">Not satisfied with the delivery? We offer mediation and guaranteed refunds.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- New Section 3: Upcoming Masterclasses -->
+    <section class="section-padding">
+        <div class="container">
+            <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 40px;">
+                <div>
+                    <h2 class="section-title" style="margin-bottom: 10px;">Creator Masterclasses</h2>
+                    <p class="text-muted">Free virtual workshops for our community.</p>
+                </div>
+                <a href="#" class="btn btn-outline">View All Events</a>
+            </div>
+            <div class="grid-2">
+                <div class="card animate-on-scroll" style="display: flex; gap: 20px; align-items: center;">
+                    <div style="background: var(--clr-primary-light); color: var(--clr-primary); padding: 20px; border-radius: 12px; text-align: center; min-width: 100px;">
+                        <h3 style="margin: 0;">15</h3>
+                        <span>OCT</span>
+                    </div>
+                    <div>
+                        <h4 style="margin-bottom: 5px;">Mastering Studio Lighting</h4>
+                        <p class="text-muted" style="margin-bottom: 10px; font-size: 0.9rem;">Learn professional techniques from top-rated STACKLY photographers.</p>
+                        <a href="#" class="text-primary fw-600">Register Free <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                <div class="card animate-on-scroll" style="transition-delay: 0.1s; display: flex; gap: 20px; align-items: center;">
+                    <div style="background: var(--clr-primary-light); color: var(--clr-primary); padding: 20px; border-radius: 12px; text-align: center; min-width: 100px;">
+                        <h3 style="margin: 0;">22</h3>
+                        <span>OCT</span>
+                    </div>
+                    <div>
+                        <h4 style="margin-bottom: 5px;">Pricing Your Art</h4>
+                        <p class="text-muted" style="margin-bottom: 10px; font-size: 0.9rem;">A comprehensive guide to negotiating and pricing corporate commissions.</p>
+                        <a href="#" class="text-primary fw-600">Register Free <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="brand-logo">
+                        <img src="assets/images/logo.webp" alt="STACKLY Logo">
+                    </div>
+                    <p>A premium partner for creative success worldwide. Experience hiring independent artists in unparalleled comfort and quality.</p>
+                                        <div class="social-links">
+                        <a href="404.html"><i class="fa-brands fa-facebook"></i></a>
+                        <a href="404.html"><i class="fa-brands fa-x-twitter"></i></a>
+                        <a href="404.html"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="404.html"><i class="fa-brands fa-linkedin"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="artists.html">Hire Artists</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="contact.html">Contact Us</a></li>
+                        <li><a href="404.html">Privacy Policy</a></li>
+                        <li><a href="404.html">Terms & Conditions</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Contact</h4>
+                    <div class="footer-contact-item">
+                        <i class="fa-solid fa-envelope"></i>
+                        <a href="mailto:support@stackly.in">support@stackly.in</a>
+                    </div>
+                    <div class="footer-contact-item">
+                        <i class="fa-solid fa-phone"></i>
+                        <p>+91 98765 43210</p>
+                    </div>
+                    <div class="footer-contact-item">
+                        <i class="fa-solid fa-location-dot"></i>
+                        <p>123 Creative Studio,<br>New York 10012</p>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Newsletter</h4>
+                    <div class="footer-newsletter">
+                        <p>Subscribe to receive the latest updates, exclusive creative offers, and platform news.</p>
+                        <input type="email" placeholder="Your email address">
+                        <button class="btn fw-600">Subscribe</button>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                &copy; 2026 STACKLY. All rights reserved.
+                <div class="back-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})"><i class="fa-solid fa-arrow-up"></i></div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- GSAP Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/animations.js"></script>
+</body>
+</html>

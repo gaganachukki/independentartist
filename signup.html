@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up - STACKLY</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    
+    <style>
+        body { background-color: var(--clr-secondary); }
+        .auth-container { display: flex; min-height: 100vh; }
+        
+        .auth-visual {
+            flex: 1;
+            background: url('assets/images/unique_23.webp') center/cover no-repeat;
+            background-color: var(--clr-primary);
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+            padding: 40px;
+        }
+        
+        .auth-visual::before {
+            content: ''; position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(135deg, rgba(124, 58, 237, 0.8) 0%, rgba(0, 0, 0, 0.6) 100%);
+        }
+        
+        .auth-visual-content { position: relative; z-index: 1; max-width: 400px; }
+        .auth-visual-content h2 { color: white; font-size: 2.5rem; margin-bottom: 20px; }
+        
+        .auth-form-container {
+            flex: 1; display: flex; align-items: center; justify-content: center;
+            padding: 60px 40px; position: relative;
+        }
+        
+        .back-home { position: absolute; top: 40px; left: 40px; font-weight: 500; display: flex; align-items: center; gap: 8px; }
+        .auth-form { width: 100%; max-width: 450px; }
+        .auth-form h1 { font-size: 2rem; margin-bottom: 10px; }
+        .auth-form p { color: var(--clr-text-light); margin-bottom: 30px; }
+        
+        .role-selector { display: flex; gap: 15px; margin-bottom: 24px; }
+        .role-btn {
+            flex: 1; padding: 12px; border: 2px solid #E5E7EB; border-radius: var(--border-radius-sm);
+            background: transparent; cursor: pointer; font-family: inherit; font-weight: 600; transition: var(--transition-fast);
+        }
+        .role-btn.active { border-color: var(--clr-primary); background: var(--clr-primary-light); color: var(--clr-primary); }
+        
+        .success-msg { display: none; background: #d1fae5; color: #065f46; padding: 15px; border-radius: 8px; margin-bottom: 20px; text-align: center; font-weight: 500; }
+        
+        @media (max-width: 900px) { .auth-visual { display: none; } .back-home { top: 20px; left: 20px; } }
+    </style>
+</head>
+<body>
+
+    <div class="auth-container">
+        <div class="auth-visual">
+            <div class="auth-visual-content">
+                <h2>Showcase Your Talent</h2>
+                <p>Join thousands of independent artists finding great projects on STACKLY.</p>
+            </div>
+        </div>
+        
+        <div class="auth-form-container">
+            <a href="index.html" class="back-home">&larr; Back to Home</a>
+            
+            <form class="auth-form" id="signupForm">
+                <h1>Create Your Account</h1>
+                <p>Start your journey with STACKLY today.</p>
+                
+                <div id="signupSuccess" class="success-msg">Account created successfully! Redirecting...</div>
+                
+                <div class="form-group">
+                    <label class="form-label">Signup As:</label>
+                    <div class="role-selector">
+                        <button type="button" class="role-btn active" data-role="client">Client</button>
+                        <button type="button" class="role-btn" data-role="admin">Admin</button>
+                    </div>
+                    <input type="hidden" id="signupRole" value="client">
+                </div>
+                
+                <div class="form-group">
+                    <label for="fullname" class="form-label">Full Name</label>
+                    <input type="text" id="fullname" class="form-control" placeholder="John Doe">
+                    <div class="error-message" id="nameError">Full name is required.</div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="regEmail" class="form-label">Email</label>
+                    <input type="email" id="regEmail" class="form-control" placeholder="john@example.com">
+                    <div class="error-message" id="regEmailError">Please enter a valid email.</div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="regPassword" class="form-label">Password</label>
+                    <input type="password" id="regPassword" class="form-control" placeholder="Min. 8 characters">
+                    <div class="error-message" id="regPwdError">Password must be at least 8 characters.</div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="confirmPwd" class="form-label">Confirm Password</label>
+                    <input type="password" id="confirmPwd" class="form-control" placeholder="Confirm your password">
+                    <div class="error-message" id="confirmPwdError">Passwords do not match.</div>
+                </div>
+                
+                <button type="submit" class="btn btn-primary" style="width: 100%;">Create Account</button>
+                
+                <div style="text-align: center; margin-top: 24px;">
+                    <p class="text-muted">Already have an account? <a href="login.html" class="text-primary fw-600">Login</a></p>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/validation.js"></script>
+</body>
+</html>

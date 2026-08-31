@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - STACKLY</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    
+    <style>
+        body { background-color: var(--clr-secondary); }
+        .auth-container {
+            display: flex;
+            min-height: 100vh;
+        }
+        
+        .auth-visual {
+            flex: 1;
+            background: url('assets/images/unique_16.webp') center/cover no-repeat;
+            background-color: var(--clr-primary);
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+            padding: 40px;
+        }
+        
+        .auth-visual::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(135deg, rgba(124, 58, 237, 0.8) 0%, rgba(0, 0, 0, 0.6) 100%);
+        }
+        
+        .auth-visual-content {
+            position: relative;
+            z-index: 1;
+            max-width: 400px;
+        }
+        
+        .auth-visual-content h2 { color: white; font-size: 2.5rem; margin-bottom: 20px; }
+        
+        .auth-form-container {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px;
+            position: relative;
+        }
+        
+        .back-home {
+            position: absolute;
+            top: 40px;
+            left: 40px;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .auth-form {
+            width: 100%;
+            max-width: 450px;
+        }
+        
+        .auth-form h1 { font-size: 2rem; margin-bottom: 10px; }
+        .auth-form p { color: var(--clr-text-light); margin-bottom: 30px; }
+        
+        .role-selector {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 24px;
+        }
+        
+        .role-btn {
+            flex: 1;
+            padding: 12px;
+            border: 2px solid #E5E7EB;
+            border-radius: var(--border-radius-sm);
+            background: transparent;
+            cursor: pointer;
+            font-family: inherit;
+            font-weight: 600;
+            transition: var(--transition-fast);
+        }
+        
+        .role-btn.active {
+            border-color: var(--clr-primary);
+            background: var(--clr-primary-light);
+            color: var(--clr-primary);
+        }
+        
+        .form-options {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 900px) {
+            .auth-visual { display: none; }
+            .back-home { top: 20px; left: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="auth-container">
+        <div class="auth-visual">
+            <div class="auth-visual-content">
+                <h2>Join the Creative Community</h2>
+                <p>Connect with top independent artists and bring your ideas to life.</p>
+            </div>
+        </div>
+        
+        <div class="auth-form-container">
+            <a href="index.html" class="back-home">&larr; Back to Home</a>
+            
+            <form class="auth-form" id="loginForm">
+                <h1>Welcome Back</h1>
+                <p>Continue connecting with amazing creative talent.</p>
+                
+                <div class="form-group">
+                    <label class="form-label">Login As:</label>
+                    <div class="role-selector">
+                        <button type="button" class="role-btn active" data-role="client">Client</button>
+                        <button type="button" class="role-btn" data-role="admin">Admin</button>
+                    </div>
+                    <input type="hidden" id="loginRole" value="client">
+                </div>
+                
+                <div class="form-group">
+                    <label for="email" class="form-label">Email / User ID</label>
+                    <input type="email" id="email" class="form-control" placeholder="Enter your email" required>
+                    <div class="error-message" id="emailError">Please enter a valid email.</div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="password" class="form-label">Password</label>
+                    <input type="password" id="password" class="form-control" placeholder="Enter your password" required>
+                    <div class="error-message" id="pwdError">Password is required.</div>
+                </div>
+                
+                <div class="form-options">
+                    <label style="display: flex; align-items: center; gap: 8px;">
+                        <input type="checkbox"> Remember Me
+                    </label>
+                    <a href="404.html" class="text-primary fw-500">Forgot Password?</a>
+                </div>
+                
+                <button type="submit" class="btn btn-primary" style="width: 100%;">Login</button>
+                
+                <div style="text-align: center; margin-top: 24px;">
+                    <p class="text-muted">Don't have an account? <a href="signup.html" class="text-primary fw-600">Create an account</a></p>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/validation.js"></script>
+</body>
+</html>

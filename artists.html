@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Discover Artists - STACKLY</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/animations.css">
+    
+    <style>
+        .page-header {
+            background-color: var(--clr-primary);
+            color: white;
+            padding: 160px 0 80px;
+            text-align: center;
+        }
+        
+        .page-header h1 {
+            color: white;
+            font-size: 3rem;
+            margin-bottom: 16px;
+        }
+        
+        .discovery-container {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 40px;
+            padding: 60px 5%;
+            max-width: 1440px;
+            margin: 0 auto;
+        }
+        
+        .filters-sidebar {
+            background: white;
+            padding: 24px;
+            border-radius: var(--border-radius);
+            border: 1px solid #E5E7EB;
+            height: fit-content;
+        }
+        
+        .filter-section {
+            margin-bottom: 24px;
+            padding-bottom: 24px;
+            border-bottom: 1px solid #E5E7EB;
+        }
+        .filter-section:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+        
+        .filter-section h4 { margin-bottom: 16px; font-size: 1.1rem; }
+        
+        .filter-checkbox {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 12px;
+            cursor: pointer;
+            color: var(--clr-text-light);
+        }
+        
+        .artist-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 24px;
+        }
+        
+        .artist-card {
+            background: white;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            border: 1px solid #E5E7EB;
+            transition: var(--transition-normal);
+        }
+        .artist-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .artist-img {
+            height: 220px;
+            background: #eee;
+            position: relative;
+        }
+        .artist-img img { width: 100%; height: 100%; object-fit: cover; }
+        
+        .verified-badge {
+            position: absolute;
+            top: 15px; right: 15px;
+            background: var(--clr-secondary);
+            color: var(--clr-accent);
+            padding: 4px 8px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            display: flex; align-items: center; gap: 4px;
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .artist-info { padding: 20px; }
+        .artist-info h3 { margin-bottom: 5px; font-size: 1.2rem; }
+        .artist-category { color: var(--clr-primary); font-weight: 500; font-size: 0.9rem; margin-bottom: 10px; }
+        .artist-stats { display: flex; justify-content: space-between; margin-bottom: 15px; font-size: 0.9rem; color: var(--clr-text-light); }
+        .artist-price { font-weight: 700; color: var(--clr-text-dark); font-size: 1.1rem; }
+        
+        @media (max-width: 900px) {
+            .discovery-container { grid-template-columns: 1fr; }
+            .filters-sidebar { display: none; /* In real app, add a toggle button */ }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-dark">
+        <div class="container nav-container">
+            <a href="index.html" class="nav-brand">
+                <img src="assets/images/logo.webp" alt="STACKLY Logo">
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="artists.html" class="active">Artists</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <div class="nav-actions">
+                <a href="login.html" class="btn btn-outline">Login</a>
+                <a href="signup.html" class="btn btn-primary">Register</a>
+            </div>
+            <div class="hamburger">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+    </nav>
+
+    <header class="page-header" style="background-image: url('assets/images/cover-artists.webp');">
+        <div class="container">
+            <h1 class="fade-up">Discover Independent Talent</h1>
+            <p class="fade-up delay-100" style="color: rgba(255,255,255,0.8); max-width: 600px; margin: 0 auto;">Find photographers, musicians, artists, event professionals and creative specialists for your next project.</p>
+        </div>
+    </header>
+
+    <div class="discovery-container">
+        <!-- Sidebar Filters -->
+        <aside class="filters-sidebar fade-up">
+            <div class="filter-section">
+                <h4>Search</h4>
+                <input type="text" class="form-control" id="artistSearch" placeholder="Name or keyword...">
+            </div>
+            
+            <div class="filter-section">
+                <h4>Category</h4>
+                <label class="filter-checkbox"><input type="checkbox" value="Photography" class="cat-filter"> Photography</label>
+                <label class="filter-checkbox"><input type="checkbox" value="Music" class="cat-filter"> Music</label>
+                <label class="filter-checkbox"><input type="checkbox" value="Art" class="cat-filter"> Art</label>
+                <label class="filter-checkbox"><input type="checkbox" value="Events" class="cat-filter"> Events</label>
+            </div>
+            
+            <div class="filter-section">
+                <h4>Sort By</h4>
+                <select class="form-control" id="sortFilter">
+                    <option value="recommended">Recommended</option>
+                    <option value="topRated">Top Rated</option>
+                    <option value="priceLow">Price: Low to High</option>
+                    <option value="priceHigh">Price: High to Low</option>
+                </select>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main>
+            <div class="artist-grid stagger-container" id="artistGrid">
+                <!-- Populated by artists.js -->
+            </div>
+            
+            <div style="text-align: center; margin-top: 40px;">
+                <button class="btn btn-outline" id="loadMoreBtn">Load More Artists</button>
+            </div>
+        </main>
+    </div>
+
+        
+    <!-- Expansion: Top Rated -->
+    <section class="section-padding" style="background: var(--clr-secondary);">
+        <div class="container text-center">
+            <h2 class="section-title">Top Rated This Week</h2>
+            <p class="section-subtitle">The highest performing talent based on client reviews.</p>
+            <div class="grid-3" style="text-align: left; margin-top: 40px;">
+                <div class="card p-0">
+                    <img src="assets/images/unique_1.webp" style="height: 200px; width: 100%; object-fit: cover; border-radius: 16px 16px 0 0;" alt="Top Rated">
+                    <div style="padding: 24px;">
+                        <h4>The Harmony Duo</h4>
+                        <p class="text-primary">Acoustic Band</p>
+                        <p class="text-muted text-sm mt-2"><i class="fa-solid fa-star" style="color:var(--clr-accent);"></i> 5.0 (124 reviews)</p>
+                    </div>
+                </div>
+                <div class="card p-0">
+                    <img src="assets/images/profile-photographer.webp" style="height: 200px; width: 100%; object-fit: cover; border-radius: 16px 16px 0 0;" alt="Top Rated">
+                    <div style="padding: 24px;">
+                        <h4>Alex Morgan</h4>
+                        <p class="text-primary">Event Photographer</p>
+                        <p class="text-muted text-sm mt-2"><i class="fa-solid fa-star" style="color:var(--clr-accent);"></i> 4.9 (89 reviews)</p>
+                    </div>
+                </div>
+                <div class="card p-0">
+                    <img src="assets/images/profile-artist.webp" style="height: 200px; width: 100%; object-fit: cover; border-radius: 16px 16px 0 0;" alt="Top Rated">
+                    <div style="padding: 24px;">
+                        <h4>Priya Singh</h4>
+                        <p class="text-primary">Digital Illustrator</p>
+                        <p class="text-muted text-sm mt-2"><i class="fa-solid fa-star" style="color:var(--clr-accent);"></i> 5.0 (200+ reviews)</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Expansion: Fresh Talent -->
+    <section class="section-padding">
+        <div class="container text-center">
+            <h2 class="section-title">Fresh Talent</h2>
+            <p class="section-subtitle">Discover our newest vetted creatives who just joined the platform.</p>
+            <div style="display: flex; gap: 20px; overflow-x: auto; padding: 20px 0; justify-content: center;">
+                <div style="text-align: center; min-width: 120px;">
+                    <img src="assets/images/profile-guitarist.webp" style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover; margin-bottom: 10px;">
+                    <h5 style="margin: 0;">Liam J.</h5>
+                    <small class="text-muted">DJ</small>
+                </div>
+                <div style="text-align: center; min-width: 120px;">
+                    <img src="assets/images/cover-blog.webp" style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover; margin-bottom: 10px;">
+                    <h5 style="margin: 0;">Emma W.</h5>
+                    <small class="text-muted">MUA</small>
+                </div>
+                <div style="text-align: center; min-width: 120px;">
+                    <img src="assets/images/cover-services.webp" style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover; margin-bottom: 10px;">
+                    <h5 style="margin: 0;">Noah R.</h5>
+                    <small class="text-muted">Videographer</small>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Expansion: Hiring Guide -->
+    <section class="section-padding" style="background: var(--clr-primary); color: white;">
+        <div class="container text-center">
+            <h2 class="section-title" style="color: white;">How to Choose the Right Artist</h2>
+            
+            <div class="grid-3" style="margin-top: 50px;">
+                <div class="card text-center animate-on-scroll" style="transition-delay: 0.1s;">
+                    <div style="width: 70px; height: 70px; background: var(--clr-primary-light); color: var(--clr-primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2.5rem; font-weight: 800; margin: 0 auto 20px;">1</div>
+                    <h4 style="margin-bottom: 10px; color: var(--clr-text-dark);">Review Portfolios</h4>
+                    <p class="text-muted">Look past the ratings. Ensure their specific style matches your project's unique vision.</p>
+                </div>
+                <div class="card text-center animate-on-scroll" style="transition-delay: 0.2s;">
+                    <div style="width: 70px; height: 70px; background: var(--clr-primary-light); color: var(--clr-primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2.5rem; font-weight: 800; margin: 0 auto 20px;">2</div>
+                    <h4 style="margin-bottom: 10px; color: var(--clr-text-dark);">Discuss Scope Early</h4>
+                    <p class="text-muted">Use our messaging system to clarify deadlines, deliverables, and revision rounds upfront.</p>
+                </div>
+                <div class="card text-center animate-on-scroll" style="transition-delay: 0.3s;">
+                    <div style="width: 70px; height: 70px; background: var(--clr-primary-light); color: var(--clr-primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2.5rem; font-weight: 800; margin: 0 auto 20px;">3</div>
+                    <h4 style="margin-bottom: 10px; color: var(--clr-text-dark);">Start with a Milestone</h4>
+                    <p class="text-muted">For large projects, break the payment into escrow milestones to ensure steady progress.</p>
+                </div>
+            </div>
+
+    </section>
+
+    <!-- Expansion: Badges -->
+    <section class="section-padding">
+        <div class="container">
+            <h2 class="section-title text-center">Understanding Badges</h2>
+            <div class="grid-3" style="margin-top: 40px;">
+                <div class="card" style="display: flex; align-items: center; gap: 15px;">
+                    <i class="fa-solid fa-circle-check" style="font-size: 2rem; color: var(--clr-accent);"></i>
+                    <div>
+                        <h4 style="margin:0;">Verified Identity</h4>
+                        <p class="text-muted text-sm mt-1" style="margin:0;">Identity and portfolio verified by our staff.</p>
+                    </div>
+                </div>
+                <div class="card" style="display: flex; align-items: center; gap: 15px;">
+                    <i class="fa-solid fa-award" style="font-size: 2rem; color: gold;"></i>
+                    <div>
+                        <h4 style="margin:0;">Top Rated</h4>
+                        <p class="text-muted text-sm mt-1" style="margin:0;">Maintains a 4.9+ rating over 20+ jobs.</p>
+                    </div>
+                </div>
+                <div class="card" style="display: flex; align-items: center; gap: 15px;">
+                    <i class="fa-solid fa-fire" style="font-size: 2rem; color: #ff6b6b;"></i>
+                    <div>
+                        <h4 style="margin:0;">Rising Star</h4>
+                        <p class="text-muted text-sm mt-1" style="margin:0;">New talent delivering exceptional early results.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Expansion: FAQ -->
+    <section class="section-padding" style="background: var(--clr-secondary);">
+        <div class="container">
+            <h2 class="section-title text-center">Client FAQ</h2>
+            <div style="max-width: 800px; margin: 40px auto 0; display: flex; flex-direction: column; gap: 15px;">
+                <div class="card" style="padding: 20px;">
+                    <h4>What happens if the artist cancels?</h4>
+                    <p class="text-muted mt-2">If an artist cancels, your escrow funds are immediately refunded, and our support team will help you find a replacement urgently.</p>
+                </div>
+                <div class="card" style="padding: 20px;">
+                    <h4>Are there hidden booking fees?</h4>
+                    <p class="text-muted mt-2">No. Clients pay a flat 3% processing fee at checkout. The price you see on the proposal is the price you pay.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="brand-logo">
+                        <img src="assets/images/logo.webp" alt="STACKLY Logo">
+                    </div>
+                    <p>A premium partner for creative success worldwide. Experience hiring independent artists in unparalleled comfort and quality.</p>
+                                        <div class="social-links">
+                        <a href="404.html"><i class="fa-brands fa-facebook"></i></a>
+                        <a href="404.html"><i class="fa-brands fa-x-twitter"></i></a>
+                        <a href="404.html"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="404.html"><i class="fa-brands fa-linkedin"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="artists.html">Hire Artists</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="contact.html">Contact Us</a></li>
+                        <li><a href="404.html">Privacy Policy</a></li>
+                        <li><a href="404.html">Terms & Conditions</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Contact</h4>
+                    <div class="footer-contact-item">
+                        <i class="fa-solid fa-envelope"></i>
+                        <a href="mailto:support@stackly.in">support@stackly.in</a>
+                    </div>
+                    <div class="footer-contact-item">
+                        <i class="fa-solid fa-phone"></i>
+                        <p>+91 98765 43210</p>
+                    </div>
+                    <div class="footer-contact-item">
+                        <i class="fa-solid fa-location-dot"></i>
+                        <p>123 Creative Studio,<br>New York 10012</p>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Newsletter</h4>
+                    <div class="footer-newsletter">
+                        <p>Subscribe to receive the latest updates, exclusive creative offers, and platform news.</p>
+                        <input type="email" placeholder="Your email address">
+                        <button class="btn fw-600">Subscribe</button>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                &copy; 2026 STACKLY. All rights reserved.
+                <div class="back-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})"><i class="fa-solid fa-arrow-up"></i></div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/artists.js"></script>
+</body>
+</html>

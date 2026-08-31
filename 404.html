@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - Page Not Found</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    
+    <style>
+        body { background-color: var(--clr-bg-main); overflow: hidden; }
+        .error-container {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+        }
+        
+        .error-content {
+            position: relative;
+            z-index: 10;
+            max-width: 600px;
+            padding: 0 20px;
+        }
+        
+        .error-code {
+            font-size: 8rem;
+            font-weight: 800;
+            color: var(--clr-primary);
+            line-height: 1;
+            margin-bottom: 20px;
+            text-shadow: 4px 4px 0px rgba(124, 58, 237, 0.2);
+        }
+        
+        .error-content h1 { font-size: 2.5rem; margin-bottom: 16px; }
+        .error-content p { color: var(--clr-text-light); margin-bottom: 40px; font-size: 1.1rem; }
+        
+        .error-actions { display: flex; gap: 16px; justify-content: center; }
+        
+        /* Floating shapes background */
+        .shape {
+            position: absolute;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--clr-primary) 0%, var(--clr-accent) 100%);
+            opacity: 0.1;
+            z-index: 1;
+        }
+        
+        .s1 { width: 300px; height: 300px; top: -100px; left: -100px; }
+        .s2 { width: 400px; height: 400px; bottom: -150px; right: -100px; }
+        .s3 { width: 150px; height: 150px; top: 20%; right: 15%; opacity: 0.05; }
+    </style>
+</head>
+<body>
+
+    <div class="error-container">
+        <div class="shape s1"></div>
+        <div class="shape s2"></div>
+        <div class="shape s3"></div>
+        
+        <div class="error-content" id="errorContent">
+            <div class="error-code">404</div>
+            <h1>Oops! This Creative Space Doesn't Exist.</h1>
+            <p>The page you're looking for may have moved, disappeared, or never existed.</p>
+            <div class="error-actions">
+                <button onclick="history.back()" class="btn btn-outline">Go Back</button>
+                <a href="index.html" class="btn btn-primary">Back to Home</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            if (typeof gsap !== 'undefined') {
+                gsap.from("#errorContent", {
+                    opacity: 0,
+                    y: 50,
+                    duration: 1,
+                    ease: "power3.out"
+                });
+                
+                gsap.to(".s1", { y: 30, x: 20, duration: 4, repeat: -1, yoyo: true, ease: "sine.inOut" });
+                gsap.to(".s2", { y: -40, x: -30, duration: 5, repeat: -1, yoyo: true, ease: "sine.inOut" });
+            }
+        });
+    </script>
+</body>
+</html>
