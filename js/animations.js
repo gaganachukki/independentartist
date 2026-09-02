@@ -49,8 +49,8 @@ document.addEventListener('DOMContentLoaded', () => {
         magneticButtons.forEach(btn => {
             btn.addEventListener('mousemove', function(e) {
                 const position = btn.getBoundingClientRect();
-                const x = e.pageX - position.left - position.width / 2;
-                const y = e.pageY - position.top - position.height / 2;
+                const x = e.clientX - position.left - position.width / 2;
+                const y = e.clientY - position.top - position.height / 2;
                 
                 gsap.to(btn, {
                     x: x * 0.3,
