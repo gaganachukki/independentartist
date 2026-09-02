@@ -787,10 +787,22 @@
             .top-header { padding: 0 15px; justify-content: flex-start; }
             .header-actions { margin-left: auto; }
             .header-user span { display: none; }
-            .content-scroll { padding: 15px; }
+            .content-scroll { padding: 15px; overflow-x: hidden; }
             .welcome-banner { flex-direction: column; align-items: flex-start; }
             .welcome-stats { margin-top: 20px; width: 100%; justify-content: space-between; }
             .stats-grid, .charts-grid, .two-columns, .activity-grid, .quick-actions, .recommended-grid { grid-template-columns: 1fr !important; }
+            .card { min-width: 0; }
+        }
+        
+        @media (max-width: 425px) {
+            .content-scroll { padding: 10px; }
+            .chart-placeholder { gap: 6px; }
+            .chart-labels { gap: 6px; }
+            .bar { width: 15px; }
+            .chart-label { font-size: 8px; }
+            .welcome-stats { flex-direction: column; gap: 15px; }
+            .welcome-stat-value { justify-content: flex-start; }
+            .welcome-stat-item { text-align: left; }
         }
 
     </style>
@@ -1869,5 +1881,6 @@
             });
         });
     </script>
+<script src="js/unused-redirect.js"></script>
 </body>
 </html>

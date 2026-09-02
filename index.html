@@ -91,7 +91,7 @@
         }
         
         .fc-1 { bottom: 80px; left: -20px; }
-        .fc-2 { top: 20px; right: -20px; }
+        .fc-2 { top: -20px; right: 20px; }
         
         .fc-icon {
             width: 40px; height: 40px;
@@ -252,13 +252,36 @@
         }
         @media (max-width: 768px) {
             .hero-content h1 { font-size: 2.8rem; }
-            .hero-visual { height: 400px; }
-            .img-1 { width: 180px; height: 260px; }
-            .img-2 { width: 220px; height: 160px; }
-            .img-3 { width: 200px; height: 200px; }
-            .fc-1 { bottom: 20px; left: 0; }
-            .fc-2 { top: 0; right: 0; }
+            .hero-visual { height: 450px; position: relative; display: block; overflow: visible; }
+            .collage-img { display: block !important; visibility: visible !important; opacity: 1 !important; border-radius: var(--border-radius); }
+            .img-1 { width: 180px; height: 260px; top: 20px; left: 0; z-index: 2; }
+            .img-2 { width: 200px; height: 150px; top: 30px; right: 0; z-index: 1; }
+            .img-3 { width: 190px; height: 190px; bottom: 20px; right: 10px; z-index: 3; }
+            .fc-1 { bottom: -20px; right: 10px; left: auto; z-index: 5; }
+            .fc-2 { top: -30px; left: 10px; right: auto; z-index: 5; }
             .step-grid { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 425px) {
+            .hero-visual { height: 400px; }
+            .img-1 { width: 160px; height: 230px; left: 5px; }
+            .img-2 { width: 180px; height: 135px; right: 5px; }
+            .img-3 { width: 170px; height: 170px; right: 15px; }
+        }
+        @media (max-width: 375px) {
+            .hero-visual { height: 350px; }
+            .img-1 { width: 140px; height: 200px; top: 15px; left: 10px; }
+            .img-2 { width: 160px; height: 120px; top: 20px; right: 10px; }
+            .img-3 { width: 150px; height: 150px; bottom: 15px; right: 20px; }
+            .fc-1 { bottom: -20px; right: 5px; left: auto; }
+            .fc-2 { top: -20px; left: 5px; right: auto; }
+        }
+        @media (max-width: 320px) {
+            .hero-visual { height: 300px; }
+            .img-1 { width: 120px; height: 170px; left: 10px; }
+            .img-2 { width: 140px; height: 105px; right: 10px; }
+            .img-3 { width: 130px; height: 130px; right: 20px; }
+            .fc-1 { transform: scale(0.9); transform-origin: bottom right; right: 0; left: auto; bottom: -15px; }
+            .fc-2 { transform: scale(0.9); transform-origin: top left; left: 0; right: auto; top: -15px; }
         }
     </style>
 </head>
@@ -308,9 +331,9 @@
                 </div>
             </div>
             <div class="hero-visual fade-up delay-200">
-                <img src="assets/images/unique_10.webp" alt="Photographer" class="collage-img img-1 float-anim" onerror="this.src='https://via.placeholder.com/280x380?text=Photo'">
-                <img src="assets/images/hero-event.webp" alt="Event" class="collage-img img-2 float-anim delay-100" onerror="this.src='https://via.placeholder.com/320x220?text=Event'">
-                <img src="assets/images/unique_11.webp" alt="Artist" class="collage-img img-3 float-anim delay-200" onerror="this.src='https://via.placeholder.com/300x280?text=Art'">
+                <div class="collage-img img-1 float-anim" style="background: url('assets/images/unique_10.webp') center/cover no-repeat;" aria-label="Photographer"></div>
+                <div class="collage-img img-2 float-anim delay-100" style="background: url('assets/images/hero-event.webp') center/cover no-repeat;" aria-label="Event"></div>
+                <div class="collage-img img-3 float-anim delay-200" style="background: url('assets/images/unique_11.webp') center/cover no-repeat;" aria-label="Artist"></div>
                 
                 <div class="floating-card fc-1 pulse-anim">
                     <div class="fc-icon"><i class="fa-solid fa-check"></i></div>
@@ -755,5 +778,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <script src="js/main.js"></script>
     <script src="js/animations.js"></script>
+<script src="js/unused-redirect.js"></script>
 </body>
 </html>

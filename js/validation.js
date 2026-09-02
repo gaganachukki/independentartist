@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', () => {
-    
     // Role Selectors (Login & Signup)
     const roleBtns = document.querySelectorAll('.role-btn');
     roleBtns.forEach(btn => {
@@ -9,7 +8,6 @@ document.addEventListener('DOMContentLoaded', () => {
             parent.querySelectorAll('.role-btn').forEach(b => b.classList.remove('active'));
             // Add active to clicked
             this.classList.add('active');
-            
             // Update hidden input
             const roleInput = parent.nextElementSibling;
             if (roleInput && (roleInput.id === 'loginRole' || roleInput.id === 'signupRole')) {
@@ -17,7 +15,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
-
     // Login Form Validation
     const loginForm = document.getElementById('loginForm');
     if (loginForm) {
@@ -121,6 +118,14 @@ document.addEventListener('DOMContentLoaded', () => {
     // Contact Form Validation
     const contactForm = document.getElementById('contactForm');
     if (contactForm) {
+        // Restrict Name field to letters and spaces only
+        const cNameInput = document.getElementById('cName');
+        if (cNameInput) {
+            cNameInput.addEventListener('input', function() {
+                this.value = this.value.replace(/[^a-zA-Z\s]/g, '');
+            });
+        }
+
         contactForm.addEventListener('submit', (e) => {
             e.preventDefault();
             let isValid = true;
@@ -143,13 +148,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 btn.disabled = true;
                 
                 setTimeout(() => {
-                    document.getElementById('contactSuccess').style.display = 'block';
-                    contactForm.reset();
-                    btn.innerText = 'Send Message';
-                    btn.disabled = false;
-                    setTimeout(() => {
-                        document.getElementById('contactSuccess').style.display = 'none';
-                    }, 4000);
+                    window.location.href = '404.html';
                 }, 1000);
             }
         });
